@@ -1,0 +1,8 @@
+<div class="star-rating">
+  @for(star of stars; track star){
+    <i class="star" [style.color]="star <= value ? checkedcolor : uncheckedcolor"
+                   [style.fontSize]="size">
+          &#9733;
+      </i>
+  }
+</div>

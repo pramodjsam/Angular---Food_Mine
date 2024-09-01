@@ -1,0 +1,44 @@
+<app-search [initialSearch]="searchTerm()" />
+<app-tags />
+<app-not-found [visible]="!foods() || foods().length <= 0" resetLinkText="Reset Search" />
+<ul>
+    @for(food of foods();track food.id){
+    <li>
+        <a routerLink="/food/{{food.id}}">
+            <img [src]="food.imageUrl" [alt]="food.name">
+            <div class="content">
+                <div class="name">
+                    {{food.name}}
+                </div>
+                <span class="favorite" [class.not]="!food.favorite">❤</span>
+                <div class="stars">
+                    <star-rating
+                        [value]="food.stars"
+                        [totalstars]="5"
+                        checkedcolor="red"
+                        uncheckedcolor="black"
+                        size="20px"
+                    />
+                </div>               
+                <div class="product-item-footer">
+                    <div class="origins">
+                        @for(origin of food.origins; track origin){
+                            <span>
+                                {{origin}}
+                            </span>
+                        }
+                        
+                    </div>
+                    <div class="cook-time">
+                        <span>🕒</span>
+                        {{food.cookTime}}
+                    </div>
+                </div>
+                <div class="price">
+                    <span>{{food.price | currency}}</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    }
+</ul>
